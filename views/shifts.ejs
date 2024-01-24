@@ -1,0 +1,37 @@
+<%- include("_header") -%>
+
+  <h1>Список смен (<%= model.length %>)</h1>
+
+  <div class="table-responsive-sm">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Сложность</th>
+          <th class="d-print-none">
+            <a class="btn btn-sm btn-success" href="/create">Добавить смену</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (const shift of model) { %>
+          <tr>
+            <td>
+              <%= shift.date %>
+            </td>
+            <td>
+              <%= shift.difficulty %>
+            </td>
+            <td class="d-print-none">
+              <a class="btn btn-sm btn-warning" href="/edit/<%= shift.id %>">Изменить</a>
+              <form action="/delete/<%=shift.id%>" method="post">
+                <input type="submit" class="btn btn-sm btn-danger" value="Удалить"></input>
+                <input type="hidden" name="" value="<%=shift.date%>">
+              </form>
+
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
